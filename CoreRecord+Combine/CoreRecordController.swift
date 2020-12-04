@@ -2,7 +2,7 @@ import Foundation
 import Combine
 import CoreData
 
-public final class CoreRecordController<Entity: ApplicationRecord>: NSObject {
+public final class CoreRecordController<Entity: ApplicationRecord>: NSObject, ObservableObject, NSFetchedResultsControllerDelegate {
     @Published public var values: [Entity] = []
     private let valuesController: NSFetchedResultsController<Entity>
 
@@ -32,10 +32,8 @@ public final class CoreRecordController<Entity: ApplicationRecord>: NSObject {
             print("❌❌❌❌") // TODO: handle properly or fail
         }
     }
-}
 
-extension CoreRecordController: NSFetchedResultsControllerDelegate {
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+    public func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         guard let fetchResult = controller.fetchedObjects as? [Entity] else { return }
 
         values = fetchResult
