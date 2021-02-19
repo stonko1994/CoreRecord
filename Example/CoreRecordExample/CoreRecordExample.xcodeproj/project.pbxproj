@@ -15,6 +15,7 @@
 		371F7A8D25DFE9F20010B325 /* CoreRecordExample.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 371F7A8B25DFE9F20010B325 /* CoreRecordExample.xcdatamodeld */; };
 		371F7A8F25DFE9F40010B325 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 371F7A8E25DFE9F40010B325 /* Assets.xcassets */; };
 		371F7A9225DFE9F40010B325 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 371F7A9025DFE9F40010B325 /* LaunchScreen.storyboard */; };
+		371F7AA325DFFE670010B325 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371F7AA225DFFE670010B325 /* Person.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		371F7A8E25DFE9F40010B325 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		371F7A9125DFE9F40010B325 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		371F7A9325DFE9F40010B325 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		371F7AA225DFFE670010B325 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		627B9E73F506587419209C82 /* Pods-CoreRecordExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoreRecordExample.release.xcconfig"; path = "Target Support Files/Pods-CoreRecordExample/Pods-CoreRecordExample.release.xcconfig"; sourceTree = "<group>"; };
 		AF7FE196642F5EE5CEAB0E29 /* Pods-CoreRecordExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoreRecordExample.debug.xcconfig"; path = "Target Support Files/Pods-CoreRecordExample/Pods-CoreRecordExample.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -65,6 +67,7 @@
 		371F7A8125DFE9F20010B325 /* CoreRecordExample */ = {
 			isa = PBXGroup;
 			children = (
+				371F7AA125DFFE580010B325 /* Models */,
 				371F7A8225DFE9F20010B325 /* AppDelegate.swift */,
 				371F7A8425DFE9F20010B325 /* SceneDelegate.swift */,
 				371F7A8625DFE9F20010B325 /* ViewController.swift */,
@@ -75,6 +78,14 @@
 				371F7A8B25DFE9F20010B325 /* CoreRecordExample.xcdatamodeld */,
 			);
 			path = CoreRecordExample;
+			sourceTree = "<group>";
+		};
+		371F7AA125DFFE580010B325 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				371F7AA225DFFE670010B325 /* Person.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		A420FF0F5FDD3846EA4F1BE3 /* Frameworks */ = {
@@ -208,6 +219,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				371F7AA325DFFE670010B325 /* Person.swift in Sources */,
 				371F7A8725DFE9F20010B325 /* ViewController.swift in Sources */,
 				371F7A8325DFE9F20010B325 /* AppDelegate.swift in Sources */,
 				371F7A8D25DFE9F20010B325 /* CoreRecordExample.xcdatamodeld in Sources */,
