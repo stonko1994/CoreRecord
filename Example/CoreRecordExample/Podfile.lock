@@ -1,0 +1,16 @@
+PODS:
+  - CoreRecord/Core (0.0.1)
+
+DEPENDENCIES:
+  - CoreRecord/Core (from `../../`)
+
+EXTERNAL SOURCES:
+  CoreRecord:
+    :path: "../../"
+
+SPEC CHECKSUMS:
+  CoreRecord: b141abcbb57722f2c536ea5e6e8a1509d727c139
+
+PODFILE CHECKSUM: 64ba4378b9083cd26d342556686f180b41e65c7e
+
+COCOAPODS: 1.10.0
