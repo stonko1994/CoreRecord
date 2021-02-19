@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0A31F5F4344F46E7AA287E73 /* Pods_CoreRecordExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 369F4AB176C459D87D1AFB9A /* Pods_CoreRecordExample.framework */; };
 		371F7A8325DFE9F20010B325 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371F7A8225DFE9F20010B325 /* AppDelegate.swift */; };
-		371F7A8525DFE9F20010B325 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371F7A8425DFE9F20010B325 /* SceneDelegate.swift */; };
 		371F7A8725DFE9F20010B325 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371F7A8625DFE9F20010B325 /* ViewController.swift */; };
 		371F7A8A25DFE9F20010B325 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 371F7A8825DFE9F20010B325 /* Main.storyboard */; };
 		371F7A8D25DFE9F20010B325 /* CoreRecordExample.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 371F7A8B25DFE9F20010B325 /* CoreRecordExample.xcdatamodeld */; };
@@ -22,7 +21,6 @@
 		369F4AB176C459D87D1AFB9A /* Pods_CoreRecordExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoreRecordExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		371F7A7F25DFE9F20010B325 /* CoreRecordExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreRecordExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		371F7A8225DFE9F20010B325 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		371F7A8425DFE9F20010B325 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		371F7A8625DFE9F20010B325 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		371F7A8925DFE9F20010B325 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		371F7A8C25DFE9F20010B325 /* CoreRecordExample.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreRecordExample.xcdatamodel; sourceTree = "<group>"; };
@@ -69,7 +67,6 @@
 			children = (
 				371F7AA125DFFE580010B325 /* Models */,
 				371F7A8225DFE9F20010B325 /* AppDelegate.swift */,
-				371F7A8425DFE9F20010B325 /* SceneDelegate.swift */,
 				371F7A8625DFE9F20010B325 /* ViewController.swift */,
 				371F7A8825DFE9F20010B325 /* Main.storyboard */,
 				371F7A8E25DFE9F40010B325 /* Assets.xcassets */,
@@ -223,7 +220,6 @@
 				371F7A8725DFE9F20010B325 /* ViewController.swift in Sources */,
 				371F7A8325DFE9F20010B325 /* AppDelegate.swift in Sources */,
 				371F7A8D25DFE9F20010B325 /* CoreRecordExample.xcdatamodeld in Sources */,
-				371F7A8525DFE9F20010B325 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
