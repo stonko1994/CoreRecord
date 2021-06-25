@@ -155,9 +155,9 @@ extension ApplicationRecord {
     }
 
     @nonobjc public static func create(context: NSManagedObjectContext) -> ApplicationRecord {
-        let o = NSEntityDescription.insertNewObject(forEntityName: self.entityName(), into: context) as! ApplicationRecord
+        let o = NSEntityDescription.insertNewObject(forEntityName: self.entityName.description, into: context) as! ApplicationRecord
         if let idprop = self.autoIncrementingId {
-            o.setPrimitiveValue(NSNumber(value: self.nextId() as Int), forKey: idprop)
+            o.setPrimitiveValue(NSNumber(value: self.nextId() as Int), forKey: idprop.description)
         }
         return o
     }
@@ -170,8 +170,8 @@ extension ApplicationRecord {
         let newEntity: ApplicationRecord = self.create(context: context)
         newEntity.update(properties)
         if let idprop = self.autoIncrementingId {
-            if newEntity.primitiveValue(forKey: idprop) == nil {
-                newEntity.setPrimitiveValue(NSNumber(value: self.nextId() as Int), forKey: idprop)
+            if newEntity.primitiveValue(forKey: idprop.description) == nil {
+                newEntity.setPrimitiveValue(NSNumber(value: self.nextId() as Int), forKey: idprop.description)
             }
         }
         return newEntity
@@ -182,7 +182,7 @@ extension ApplicationRecord {
     }
 
     public static func nextId() -> Int {
-        let key = "CoreRecord-" + self.entityName() + "-ID"
+        let key = "CoreRecord-" + self.entityName.description + "-ID"
         if let _ = self.autoIncrementingId {
             let id = UserDefaults.standard.integer(forKey: key)
             UserDefaults.standard.set(id + 1, forKey: key)
@@ -234,37 +234,10 @@ extension ApplicationRecord {
         }
     }
 
-    public static func entityName() -> String {
-        var name = NSStringFromClass(self)
-        if name.range(of: ".") != nil {
-
-            let comp = name.split {$0 == "."}.map { String($0) }
-            if comp.count > 1 {
-                name = comp.last!
-            }
-        }
-        if name.range(of: "_") != nil {
-            var comp = name.split {$0 == "_"}.map { String($0) }
-            var last: String = ""
-            var remove = -1
-            for (i,s) in comp.reversed().enumerated() {
-                if last == s {
-                    remove = i
-                }
-                last = s
-            }
-            if remove > -1 {
-                comp.remove(at: remove)
-                name = comp.joined(separator: "_")
-            }
-        }
-        return name
-    }
-
     //Private
 
     fileprivate static func transformProperties(_ properties: [String: Any], context: NSManagedObjectContext) -> [String: Any]{
-        let entity = NSEntityDescription.entity(forEntityName: self.entityName(), in: context)!
+        let entity = NSEntityDescription.entity(forEntityName: self.entityName.description, in: context)!
         let attrs = entity.attributesByName
         let rels = entity.relationshipsByName
 
@@ -362,7 +335,7 @@ extension ApplicationRecord {
 
     fileprivate static func createFetchRequest(_ context: NSManagedObjectContext) -> NSFetchRequest<NSFetchRequestResult> {
         let request = NSFetchRequest<NSFetchRequestResult>()
-        request.entity = NSEntityDescription.entity(forEntityName: self.entityName(), in: context)
+        request.entity = NSEntityDescription.entity(forEntityName: self.entityName.description, in: context)
         return request
     }
 
@@ -616,7 +589,7 @@ extension ApplicationRecord {
         if let s = cachedMappings[remote] {
             return s
         }
-        let entity = NSEntityDescription.entity(forEntityName: self.entityName(), in: context)!
+        let entity = NSEntityDescription.entity(forEntityName: self.entityName.description, in: context)!
         let properties = entity.propertiesByName
         if properties[remote] != nil {
             _cachedMappings![remote] = remote
