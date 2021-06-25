@@ -157,7 +157,7 @@ extension ApplicationRecord {
     @nonobjc public static func create(context: NSManagedObjectContext) -> ApplicationRecord {
         let o = NSEntityDescription.insertNewObject(forEntityName: self.entityName.description, into: context) as! ApplicationRecord
         if let idprop = self.autoIncrementingId {
-            o.setPrimitiveValue(NSNumber(value: self.nextId() as Int), forKey: idprop)
+            o.setPrimitiveValue(NSNumber(value: self.nextId() as Int), forKey: idprop.description)
         }
         return o
     }
@@ -170,8 +170,8 @@ extension ApplicationRecord {
         let newEntity: ApplicationRecord = self.create(context: context)
         newEntity.update(properties)
         if let idprop = self.autoIncrementingId {
-            if newEntity.primitiveValue(forKey: idprop) == nil {
-                newEntity.setPrimitiveValue(NSNumber(value: self.nextId() as Int), forKey: idprop)
+            if newEntity.primitiveValue(forKey: idprop.description) == nil {
+                newEntity.setPrimitiveValue(NSNumber(value: self.nextId() as Int), forKey: idprop.description)
             }
         }
         return newEntity

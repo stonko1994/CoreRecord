@@ -2,8 +2,8 @@ import Foundation
 import CoreData
 
 open class ApplicationRecord: NSManagedObject {
-    open class var autoIncrementingId: String? {
-        return nil
+    open class var autoIncrementingId: FieldKey? {
+        nil
     }
 
     open class var entityName: EntityName {
