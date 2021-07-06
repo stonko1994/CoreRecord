@@ -55,6 +55,20 @@ open class CoreRecord {
         }
     }
     fileprivate var _modelName: String?
+
+    open var modelBundle: Bundle {
+        get {
+            if let bundle = _modelBundle {
+                return bundle
+            } else {
+                return Bundle.main
+            }
+        }
+        set {
+            _modelBundle = newValue
+        }
+    }
+    private var _modelBundle: Bundle?
     
     open var managedObjectContext: NSManagedObjectContext {
         get {
@@ -89,7 +103,7 @@ open class CoreRecord {
             if let m = _managedObjectModel {
                 return m
             } else {
-                let modelURL = Bundle.main.url(forResource: self.modelName, withExtension: "momd")
+                let modelURL = modelBundle.url(forResource: self.modelName, withExtension: "momd")
                 _managedObjectModel = NSManagedObjectModel(contentsOf: modelURL!)
                 return _managedObjectModel!
             }
