@@ -4,6 +4,10 @@ import CoreData
 extension ApplicationRecord {
 
     //Querying
+    @nonobjc public static func first(context: NSManagedObjectContext = NSManagedObjectContext.defaultContext) -> Self? {
+        return first(of: all(context: context))
+    }
+
     @nonobjc public static func all(context: NSManagedObjectContext = NSManagedObjectContext.defaultContext) -> [ApplicationRecord] {
         return self.fetch(predicate: nil, context: context, sortQuery: nil, limit: nil)
     }

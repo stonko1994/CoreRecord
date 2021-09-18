@@ -33,6 +33,13 @@ This library also reads in your json dictionaries for you. Includes automatic ca
     ss.dependency "CoreRecord/Core"
   end
 
+  s.subspec 'X' do |ss|
+    ss.ios.deployment_target = "8.0"
+    ss.osx.deployment_target = "10.9"
+    ss.source_files  = "CoreRecord+X/**/*.{swift}"
+    ss.dependency "CoreRecord/Core"
+  end
+
   s.subspec 'Migration' do |ss|
     ss.ios.deployment_target = "8.0"
     ss.osx.deployment_target = "10.9"
