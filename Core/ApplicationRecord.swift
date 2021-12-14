@@ -40,4 +40,19 @@ open class ApplicationRecord: NSManagedObject {
 
         return .string(name)
     }
+
+    // TODO: find out why this is needed and why `super.entity()` doesn't return the expected value
+    open override class func entity() -> NSEntityDescription {
+        NSEntityDescription.entity(
+            forEntityName: self.entityName.description,
+            in: CoreRecord.sharedRecord.managedObjectContext
+        ) ?? super.entity()
+    }
+
+    open class func entity(in managedObjectContext: NSManagedObjectContext) -> NSEntityDescription {
+        NSEntityDescription.entity(
+            forEntityName: self.entityName.description,
+            in: managedObjectContext
+        ) ?? super.entity()
+    }
 }
