@@ -343,7 +343,7 @@ extension ApplicationRecord {
         return request
     }
 
-    fileprivate static func fetch(query: String?, context: NSManagedObjectContext, sortQuery: String?, limit: Int?, args: [Any]? = nil) -> [ApplicationRecord] {
+    internal static func fetch(query: String?, context: NSManagedObjectContext, sortQuery: String?, limit: Int?, args: [Any]? = nil) -> [ApplicationRecord] {
         let request = self.createFetchRequest(context)
 
         request.predicate = self.predicate(query, args: args)
@@ -356,7 +356,7 @@ extension ApplicationRecord {
         return fetch(request: request, context: context)
     }
 
-    fileprivate static func fetch(query: String?, context: NSManagedObjectContext, sortConditions: [[String: Any]]?, limit: Int?, args: [Any]? = nil) -> [ApplicationRecord] {
+    internal static func fetch(query: String?, context: NSManagedObjectContext, sortConditions: [[String: Any]]?, limit: Int?, args: [Any]? = nil) -> [ApplicationRecord] {
         let request = self.createFetchRequest(context)
 
         request.predicate = self.predicate(query, args: args)
@@ -369,7 +369,7 @@ extension ApplicationRecord {
         return fetch(request: request, context: context)
     }
 
-    fileprivate static func fetch(query: String?, context: NSManagedObjectContext, sortCondition: [String: Any]?, limit: Int?, args: [Any]? = nil) -> [ApplicationRecord] {
+    internal static func fetch(query: String?, context: NSManagedObjectContext, sortCondition: [String: Any]?, limit: Int?, args: [Any]? = nil) -> [ApplicationRecord] {
         var conditions: [[String: Any]]?
 
         if let condition = sortCondition {
@@ -380,7 +380,7 @@ extension ApplicationRecord {
     }
 
 
-    fileprivate static func fetch(query: String?, context: NSManagedObjectContext, sortDescriptors: [NSSortDescriptor]?, limit: Int?, args: [Any]? = nil) -> [ApplicationRecord] {
+    internal static func fetch(query: String?, context: NSManagedObjectContext, sortDescriptors: [NSSortDescriptor]?, limit: Int?, args: [Any]? = nil) -> [ApplicationRecord] {
         let request = self.createFetchRequest(context)
 
         request.predicate = self.predicate(query, args: args)
@@ -393,7 +393,7 @@ extension ApplicationRecord {
         return fetch(request: request, context: context)
     }
 
-    fileprivate static func fetch(properties: [String: Any]?, context: NSManagedObjectContext, sortQuery: String?, limit: Int?) -> [ApplicationRecord] {
+    internal static func fetch(properties: [String: Any]?, context: NSManagedObjectContext, sortQuery: String?, limit: Int?) -> [ApplicationRecord] {
         let request = self.createFetchRequest(context)
 
         request.predicate = self.predicate(properties)
@@ -406,7 +406,7 @@ extension ApplicationRecord {
         return fetch(request: request, context: context)
     }
 
-    fileprivate static func fetch(properties: [String: Any]?, context: NSManagedObjectContext, sortConditions: [[String: Any]]?, limit: Int?) -> [ApplicationRecord] {
+    internal static func fetch(properties: [String: Any]?, context: NSManagedObjectContext, sortConditions: [[String: Any]]?, limit: Int?) -> [ApplicationRecord] {
         let request = self.createFetchRequest(context)
 
         request.predicate = self.predicate(properties)
@@ -419,7 +419,7 @@ extension ApplicationRecord {
         return fetch(request: request, context: context)
     }
 
-    fileprivate static func fetch(properties: [String: Any]?, context: NSManagedObjectContext, sortCondition: [String: Any]?, limit: Int?) -> [ApplicationRecord] {
+    internal static func fetch(properties: [String: Any]?, context: NSManagedObjectContext, sortCondition: [String: Any]?, limit: Int?) -> [ApplicationRecord] {
         var conditions: [[String: Any]]?
 
         if let condition = sortCondition {
@@ -429,7 +429,7 @@ extension ApplicationRecord {
         return fetch(properties: properties, context: context, sortConditions: conditions, limit: limit)
     }
 
-    fileprivate static func fetch(properties: [String: Any]?, context: NSManagedObjectContext, sortDescriptors: [NSSortDescriptor]?, limit: Int?) -> [ApplicationRecord] {
+    internal static func fetch(properties: [String: Any]?, context: NSManagedObjectContext, sortDescriptors: [NSSortDescriptor]?, limit: Int?) -> [ApplicationRecord] {
         let request = self.createFetchRequest(context)
 
         request.predicate = self.predicate(properties)
@@ -442,7 +442,7 @@ extension ApplicationRecord {
         return fetch(request: request, context: context)
     }
 
-    fileprivate static func fetch(predicate: NSPredicate?, context: NSManagedObjectContext, sortQuery: String?, limit: Int?) -> [ApplicationRecord] {
+    internal static func fetch(predicate: NSPredicate?, context: NSManagedObjectContext, sortQuery: String?, limit: Int?) -> [ApplicationRecord] {
         let request = self.createFetchRequest(context)
 
         request.predicate = predicate
@@ -455,7 +455,7 @@ extension ApplicationRecord {
         return fetch(request: request, context: context)
     }
 
-    fileprivate static func fetch(predicate: NSPredicate?, context: NSManagedObjectContext, sortConditions: [[String: Any]]?, limit: Int?) -> [ApplicationRecord] {
+    internal static func fetch(predicate: NSPredicate?, context: NSManagedObjectContext, sortConditions: [[String: Any]]?, limit: Int?) -> [ApplicationRecord] {
         let request = self.createFetchRequest(context)
 
         request.predicate = predicate
@@ -468,7 +468,7 @@ extension ApplicationRecord {
         return fetch(request: request, context: context)
     }
 
-    fileprivate static func fetch(predicate: NSPredicate?, context: NSManagedObjectContext, sortCondition: [String: Any]?, limit: Int?) -> [ApplicationRecord] {
+    internal static func fetch(predicate: NSPredicate?, context: NSManagedObjectContext, sortCondition: [String: Any]?, limit: Int?) -> [ApplicationRecord] {
         var conditions: [[String: Any]]?
 
         if let condition = sortCondition {
@@ -478,7 +478,7 @@ extension ApplicationRecord {
         return fetch(predicate: predicate, context: context, sortConditions: conditions, limit: limit)
     }
 
-    fileprivate static func fetch(predicate: NSPredicate?, context: NSManagedObjectContext, sortDescriptors: [NSSortDescriptor]?, limit: Int?) -> [ApplicationRecord] {
+    internal static func fetch(predicate: NSPredicate?, context: NSManagedObjectContext, sortDescriptors: [NSSortDescriptor]?, limit: Int?) -> [ApplicationRecord] {
         let request = self.createFetchRequest(context)
 
         request.predicate = predicate
@@ -491,7 +491,7 @@ extension ApplicationRecord {
         return fetch(request: request, context: context)
     }
 
-    fileprivate static func fetch(request: NSFetchRequest<NSFetchRequestResult>, context: NSManagedObjectContext) -> [ApplicationRecord] {
+    internal static func fetch(request: NSFetchRequest<NSFetchRequestResult>, context: NSManagedObjectContext) -> [ApplicationRecord] {
         var result : [ApplicationRecord]
 
         do {
