@@ -4,161 +4,199 @@ import CoreData
 extension ApplicationRecord {
 
     //Querying
-    @nonobjc public static func first(context: NSManagedObjectContext = NSManagedObjectContext.defaultContext) -> Self? {
+    @nonobjc
+    public static func first(context: NSManagedObjectContext = NSManagedObjectContext.defaultContext) -> Self? {
         return first(of: all(context: context))
     }
 
-    @nonobjc public static func all(context: NSManagedObjectContext = NSManagedObjectContext.defaultContext) -> [ApplicationRecord] {
+    @nonobjc
+    public static func all(context: NSManagedObjectContext = NSManagedObjectContext.defaultContext) -> [ApplicationRecord] {
         return self.fetch(predicate: nil, context: context, sortQuery: nil, limit: nil)
     }
 
-    @nonobjc public static func all(context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, sort: String?) -> [ApplicationRecord] {
+    @nonobjc
+    public static func all(context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, sort: String?) -> [ApplicationRecord] {
         return self.fetch(predicate: nil, context: context, sortQuery: sort, limit: nil)
     }
 
-    @nonobjc public static func all(context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, sort: [[String: Any]]?) -> [ApplicationRecord] {
+    @nonobjc
+    public static func all(context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, sort: [[String: Any]]?) -> [ApplicationRecord] {
         return self.fetch(predicate: nil, context: context, sortConditions: sort, limit: nil)
     }
 
-    @nonobjc public static func findOrCreate(_ properties: [String: Any]) -> Self {
+    @nonobjc
+    public static func findOrCreate(_ properties: [String: Any]) -> Self {
         return self.findOrCreate(properties, context: NSManagedObjectContext.defaultContext)
     }
 
-    @nonobjc public static func findOrCreate(_ properties: [String: Any], context: NSManagedObjectContext) -> Self {
+    @nonobjc
+    public static func findOrCreate(_ properties: [String: Any], context: NSManagedObjectContext) -> Self {
         let transformed = self.transformProperties(properties, context: context)
         let existing: Self? = first(of: query(transformed, context: context))
         return existing ?? create(transformed, context:context)
     }
 
-    @nonobjc public static func find(_ condition: String, context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, argsArray: [Any]? = nil) -> Self? {
+    @nonobjc
+    public static func find(_ condition: String, context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, argsArray: [Any]? = nil) -> Self? {
         return first(of: query(condition, context: context, limit: 1, argsArray: argsArray))
     }
 
-    @nonobjc public static func find(_ condition: String, context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, args: Any...) -> Self? {
+    @nonobjc
+    public static func find(_ condition: String, context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, args: Any...) -> Self? {
         return first(of: query(condition, context: context, limit: 1, argsArray: args))
     }
 
-    @nonobjc public static func find(_ condition: String, context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, sort: String?, argsArray: [Any]? = nil) -> Self? {
+    @nonobjc
+    public static func find(_ condition: String, context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, sort: String?, argsArray: [Any]? = nil) -> Self? {
         return first(of: query(condition, context: context, sort: sort, limit: 1, argsArray: argsArray))
     }
 
-    @nonobjc public static func find(_ condition: String, context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, sort: String?, args: Any...) -> Self? {
+    @nonobjc
+    public static func find(_ condition: String, context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, sort: String?, args: Any...) -> Self? {
         return first(of: query(condition, context: context, sort: sort, limit: 1, argsArray: args))
     }
 
-    @nonobjc public static func find(_ condition: String, context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, sort: [[String: Any]]?, argsArray: [Any]? = nil) -> Self? {
+    @nonobjc
+    public static func find(_ condition: String, context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, sort: [[String: Any]]?, argsArray: [Any]? = nil) -> Self? {
         return first(of: query(condition, context: context, sort: sort, limit: 1, argsArray: argsArray))
     }
 
-    @nonobjc public static func find(_ condition: String, context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, sort: [[String: Any]]?, args: Any...) -> Self? {
+    @nonobjc
+    public static func find(_ condition: String, context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, sort: [[String: Any]]?, args: Any...) -> Self? {
         return first(of: query(condition, context: context, sort: sort, limit: 1, argsArray: args))
     }
 
-    @nonobjc public static func find(_ condition: [String: Any], context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, sort: String?) -> Self? {
+    @nonobjc
+    public static func find(_ condition: [String: Any], context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, sort: String?) -> Self? {
         return first(of: query(condition, context: context, sort: sort, limit: 1))
     }
 
-    @nonobjc public static func find(_ condition: [String: Any], context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, sort: [[String: Any]]?) -> Self? {
+    @nonobjc
+    public static func find(_ condition: [String: Any], context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, sort: [[String: Any]]?) -> Self? {
         return first(of: query(condition, context: context, sort: sort, limit: 1))
     }
 
-    @nonobjc public static func find(_ condition: NSPredicate, context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, sort: String?) -> Self? {
+    @nonobjc
+    public static func find(_ condition: NSPredicate, context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, sort: String?) -> Self? {
         return first(of: query(condition, context: context, sort: sort, limit: 1))
     }
 
-    @nonobjc public static func find(_ condition: NSPredicate, context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, sort: [[String: Any]]?) -> Self? {
+    @nonobjc
+    public static func find(_ condition: NSPredicate, context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, sort: [[String: Any]]?) -> Self? {
         return first(of: query(condition, context: context, sort: sort, limit: 1))
     }
 
-    @nonobjc public static func query(_ condition: String, context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, limit: Int? = nil, argsArray: [Any]? = nil) -> [ApplicationRecord] {
+    @nonobjc
+    public static func query(_ condition: String, context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, limit: Int? = nil, argsArray: [Any]? = nil) -> [ApplicationRecord] {
         return self.fetch(query: condition, context: context, sortDescriptors: nil, limit: limit, args: argsArray)
     }
 
-    @nonobjc public static func query(_ condition: String, context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, limit: Int? = nil, args: Any...) -> [ApplicationRecord] {
+    @nonobjc
+    public static func query(_ condition: String, context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, limit: Int? = nil, args: Any...) -> [ApplicationRecord] {
         return self.fetch(query: condition, context: context, sortDescriptors: nil, limit: limit, args: args)
     }
 
-    @nonobjc public static func query(_ condition: String, context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, sort: String?, limit: Int? = nil, argsArray: [Any]? = nil) -> [ApplicationRecord] {
+    @nonobjc
+    public static func query(_ condition: String, context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, sort: String?, limit: Int? = nil, argsArray: [Any]? = nil) -> [ApplicationRecord] {
         return self.fetch(query: condition, context: context, sortQuery: sort, limit: limit, args: argsArray)
     }
 
-    @nonobjc public static func query(_ condition: String, context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, sort: String?, limit: Int? = nil, args: Any...) -> [ApplicationRecord] {
+    @nonobjc
+    public static func query(_ condition: String, context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, sort: String?, limit: Int? = nil, args: Any...) -> [ApplicationRecord] {
         return self.fetch(query: condition, context: context, sortQuery: sort, limit: limit, args: args)
     }
 
-    @nonobjc public static func query(_ condition: String, context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, sort: [[String: Any]]?, limit: Int? = nil, argsArray: [Any]? = nil) -> [ApplicationRecord] {
+    @nonobjc
+    public static func query(_ condition: String, context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, sort: [[String: Any]]?, limit: Int? = nil, argsArray: [Any]? = nil) -> [ApplicationRecord] {
         return self.fetch(query: condition, context: context, sortConditions: sort, limit: limit, args: argsArray)
     }
 
-    @nonobjc public static func query(_ condition: String, context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, sort: [[String: Any]]?, limit: Int? = nil, args: Any...) -> [ApplicationRecord] {
+    @nonobjc
+    public static func query(_ condition: String, context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, sort: [[String: Any]]?, limit: Int? = nil, args: Any...) -> [ApplicationRecord] {
         return self.fetch(query: condition, context: context, sortConditions: sort, limit: limit, args: args)
     }
 
-    @nonobjc public static func query(_ condition: String, context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, sort: [String: Any]?, limit: Int? = nil, argsArray: [Any]? = nil) -> [ApplicationRecord] {
+    @nonobjc
+    public static func query(_ condition: String, context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, sort: [String: Any]?, limit: Int? = nil, argsArray: [Any]? = nil) -> [ApplicationRecord] {
         return self.fetch(query: condition, context: context, sortCondition: sort, limit: limit, args: argsArray)
     }
 
-    @nonobjc public static func query(_ condition: String, context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, sort: [String: Any]?, limit: Int? = nil, args: Any...) -> [ApplicationRecord] {
+    @nonobjc
+    public static func query(_ condition: String, context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, sort: [String: Any]?, limit: Int? = nil, args: Any...) -> [ApplicationRecord] {
         return self.fetch(query: condition, context: context, sortCondition: sort, limit: limit, args: args)
     }
 
-    @nonobjc public static func query(_ condition: [String: Any], context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, limit: Int? = nil) -> [ApplicationRecord] {
+    @nonobjc
+    public static func query(_ condition: [String: Any], context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, limit: Int? = nil) -> [ApplicationRecord] {
         return self.fetch(properties: condition, context: context, sortDescriptors: nil, limit: limit)
     }
 
-    @nonobjc public static func query(_ condition: [String: Any], context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, sort: String?, limit: Int? = nil) -> [ApplicationRecord] {
+    @nonobjc
+    public static func query(_ condition: [String: Any], context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, sort: String?, limit: Int? = nil) -> [ApplicationRecord] {
         return self.fetch(properties: condition, context: context, sortQuery: sort, limit: limit)
     }
 
-    @nonobjc public static func query(_ condition: [String: Any], context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, sort: [[String: Any]]?, limit: Int? = nil) -> [ApplicationRecord] {
+    @nonobjc
+    public static func query(_ condition: [String: Any], context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, sort: [[String: Any]]?, limit: Int? = nil) -> [ApplicationRecord] {
         return self.fetch(properties: condition, context: context, sortConditions: sort, limit: limit)
     }
 
-    @nonobjc public static func query(_ condition: [String: Any], context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, sort: [String: Any]?, limit: Int? = nil) -> [ApplicationRecord] {
+    @nonobjc
+    public static func query(_ condition: [String: Any], context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, sort: [String: Any]?, limit: Int? = nil) -> [ApplicationRecord] {
         return self.fetch(properties: condition, context: context, sortCondition: sort, limit: limit)
     }
 
-    @nonobjc public static func query(_ condition: NSPredicate, context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, limit: Int? = nil) -> [ApplicationRecord] {
+    @nonobjc
+    public static func query(_ condition: NSPredicate, context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, limit: Int? = nil) -> [ApplicationRecord] {
         return self.fetch(predicate: condition, context: context, sortDescriptors: nil, limit: limit)
     }
 
-    @nonobjc public static func query(_ condition: NSPredicate, context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, sort: [[String: Any]]?, limit: Int? = nil) -> [ApplicationRecord] {
+    @nonobjc
+    public static func query(_ condition: NSPredicate, context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, sort: [[String: Any]]?, limit: Int? = nil) -> [ApplicationRecord] {
         return self.fetch(predicate: condition, context: context, sortConditions: sort, limit: limit)
     }
 
-    @nonobjc public static func query(_ condition: NSPredicate, context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, sort: [String: Any]?, limit: Int? = nil) -> [ApplicationRecord] {
+    @nonobjc
+    public static func query(_ condition: NSPredicate, context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, sort: [String: Any]?, limit: Int? = nil) -> [ApplicationRecord] {
         return self.fetch(predicate: condition, context: context, sortCondition: sort, limit: limit)
     }
 
-    @nonobjc public static func query(_ condition: NSPredicate, context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, sort: String?, limit: Int? = nil) -> [ApplicationRecord] {
+    @nonobjc
+    public static func query(_ condition: NSPredicate, context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, sort: String?, limit: Int? = nil) -> [ApplicationRecord] {
         return self.fetch(predicate: condition, context: context, sortQuery: sort, limit: limit)
     }
 
     // Aggregation
-    @nonobjc public static func count(_ context: NSManagedObjectContext = NSManagedObjectContext.defaultContext) -> Int {
+    @nonobjc
+    public static func count(_ context: NSManagedObjectContext = NSManagedObjectContext.defaultContext) -> Int {
         return self.countForFetch(nil, context: context)
     }
 
-    @nonobjc public static func count(query: [String: Any], context: NSManagedObjectContext = NSManagedObjectContext.defaultContext) -> Int {
+    @nonobjc
+    public static func count(query: [String: Any], context: NSManagedObjectContext = NSManagedObjectContext.defaultContext) -> Int {
         let predicate = self.predicate(query)
         return self.countForFetch(predicate, context: context)
     }
 
-    @nonobjc public static func count(query: String, context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, args: Any...) -> Int {
+    @nonobjc
+    public static func count(query: String, context: NSManagedObjectContext = NSManagedObjectContext.defaultContext, args: Any...) -> Int {
         let predicate = self.predicate(query, args: args)
         return self.countForFetch(predicate, context: context)
     }
 
-    @nonobjc public static func count(query: NSPredicate, context: NSManagedObjectContext = NSManagedObjectContext.defaultContext) -> Int {
+    @nonobjc
+    public static func count(query: NSPredicate, context: NSManagedObjectContext = NSManagedObjectContext.defaultContext) -> Int {
         return self.countForFetch(query, context: context)
     }
 
     // Creation / Deletion
-    @nonobjc public static func create() -> Self {
+    @nonobjc
+    public static func create() -> Self {
         return self.create(context: NSManagedObjectContext.defaultContext)
     }
 
-    @nonobjc public static func create(context: NSManagedObjectContext) -> Self {
+    @nonobjc
+    public static func create(context: NSManagedObjectContext) -> Self {
         let o = NSEntityDescription.insertNewObject(forEntityName: self.entityName.description, into: context) as! Self
         if let idprop = self.autoIncrementingId {
             o.setPrimitiveValue(NSNumber(value: self.nextId() as Int), forKey: idprop.description)
@@ -166,11 +204,13 @@ extension ApplicationRecord {
         return o
     }
 
-    @nonobjc public static func create(_ properties: [String: Any]) -> Self {
+    @nonobjc
+    public static func create(_ properties: [String: Any]) -> Self {
         return self.create(properties, context: NSManagedObjectContext.defaultContext)
     }
 
-    @nonobjc public static func create(_ properties: [String: Any], context: NSManagedObjectContext) -> Self {
+    @nonobjc
+    public static func create(_ properties: [String: Any], context: NSManagedObjectContext) -> Self {
         let newEntity: ApplicationRecord = self.create(context: context)
         newEntity.update(properties)
         if let idprop = self.autoIncrementingId {
