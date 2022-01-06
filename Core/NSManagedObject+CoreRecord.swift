@@ -25,11 +25,13 @@ extension ApplicationRecord {
     }
 
     @nonobjc
+    @discardableResult
     public static func findOrCreate(_ properties: [String: Any]) -> Self {
         return self.findOrCreate(properties, context: NSManagedObjectContext.defaultContext)
     }
 
     @nonobjc
+    @discardableResult
     public static func findOrCreate(_ properties: [String: Any], context: NSManagedObjectContext) -> Self {
         let transformed = self.transformProperties(properties, context: context)
         let existing: Self? = first(of: query(transformed, context: context))
@@ -191,11 +193,13 @@ extension ApplicationRecord {
 
     // Creation / Deletion
     @nonobjc
+    @discardableResult
     public static func create() -> Self {
         return self.create(context: NSManagedObjectContext.defaultContext)
     }
 
     @nonobjc
+    @discardableResult
     public static func create(context: NSManagedObjectContext) -> Self {
         let o = NSEntityDescription.insertNewObject(forEntityName: self.entityName.description, into: context) as! Self
         if let idprop = self.autoIncrementingId {
@@ -205,11 +209,13 @@ extension ApplicationRecord {
     }
 
     @nonobjc
+    @discardableResult
     public static func create(_ properties: [String: Any]) -> Self {
         return self.create(properties, context: NSManagedObjectContext.defaultContext)
     }
 
     @nonobjc
+    @discardableResult
     public static func create(_ properties: [String: Any], context: NSManagedObjectContext) -> Self {
         let newEntity: ApplicationRecord = self.create(context: context)
         newEntity.update(properties)
@@ -249,6 +255,7 @@ extension ApplicationRecord {
         }
     }
 
+    @discardableResult
     public static func save() -> Bool {
         do {
             try NSManagedObjectContext.defaultContext.save()
