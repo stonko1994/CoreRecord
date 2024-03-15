@@ -1,3 +1,6 @@
+#if SWIFT_PACKAGE
+import CoreRecordCore
+#endif
 import Foundation
 
 public protocol TimestampsHaving {

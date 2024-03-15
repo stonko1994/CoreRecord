@@ -1,3 +1,6 @@
+#if SWIFT_PACKAGE
+import CoreRecordCore
+#endif
 import SwiftUI
 
 public struct CoreRecordInjector: ViewModifier {

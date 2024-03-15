@@ -1,5 +1,8 @@
-import Foundation
 import CoreData
+#if SWIFT_PACKAGE
+import CoreRecordCore
+#endif
+import Foundation
 
 public protocol Archivable: AnyObject {
     var archivedAt: Date? { get set }
@@ -22,11 +25,9 @@ public extension Archivable where Self: ApplicationRecord {
     static func allActive(
         context: NSManagedObjectContext = NSManagedObjectContext.defaultContext
     ) -> [ApplicationRecord] {
-        fetch(
-            predicate: NSPredicate(format: "archivedAt = NULL"),
-            context: context,
-            sortQuery: nil,
-            limit: nil
+        query(
+            NSPredicate(format: "archivedAt = NULL"),
+            context: context
         )
     }
 }
