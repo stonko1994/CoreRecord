@@ -1,3 +1,6 @@
+#if SWIFT_PACKAGE
+import CoreRecordCore
+#endif
 import Foundation
 
 /// A primitive value can't be optional in ObjC and therefore also not for CoreData.

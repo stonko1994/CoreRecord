@@ -1,6 +1,9 @@
 import Foundation
 import Combine
 import CoreData
+#if SWIFT_PACKAGE
+import CoreRecordCore
+#endif
 
 public final class CoreRecordController<Entity: ApplicationRecord>: NSObject, ObservableObject, NSFetchedResultsControllerDelegate {
     @Published public var values: [Entity] = []
